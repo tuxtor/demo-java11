@@ -18,8 +18,8 @@ public class BanguatController {
 
     @GET
     public String getExtancheRate(){
-        InfoVariable response = new TipoCambio().getTipoCambioSoap().tipoCambioDia();
-        BigDecimal exchangeRate = new BigDecimal(
+        var response = new TipoCambio().getTipoCambioSoap().tipoCambioDia();
+        var exchangeRate = new BigDecimal(
                 response.getCambioDolar().getVarDolar().get(0).getReferencia());
 
         return exchangeRate.toString();
