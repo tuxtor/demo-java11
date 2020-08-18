@@ -1,0 +1,23 @@
+version: '3.1'
+services:
+    demo-java11:
+        image: tuxtor/demo-java11:11
+        restart: always
+        environment:
+            JAVA_TOOL_OPTIONS: '-Xmx64m'
+        ports:
+            - 8080
+        networks:
+            - webnet
+    lb:
+        image: nginx:latest
+        volumes:
+            - ./nginx.conf:/etc/nginx/nginx.conf:ro
+        depends_on:
+            - demo-java11
+        ports:
+            - "4000:4000"
+        networks:
+            - webnet
+networks:
+    webnet:
